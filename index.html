@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeoVita~VitalSync - Asistente de Salud e Inteligencia Familiar</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#08142A',
+                        cardBg: 'rgba(15, 29, 58, 0.75)',
+                        neonCyan: '#00F0FF',
+                        neonTeal: '#0D9488',
+                        neonEmerald: '#10B981',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #08142A;
+            color: #F8FAFC;
+        }
+        .glass-card {
+            background: rgba(15, 29, 58, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 240, 255, 0.15);
+        }
+        .glass-card:hover {
+            border-color: rgba(0, 240, 255, 0.4);
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.15);
+        }
+        .glow-text {
+            text-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+        }
+        .glow-btn {
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+        .glow-btn:hover {
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.8);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="bg-darkBg text-slate-100 antialiased selection:bg-cyan-500 selection:text-white">
+
+    <!-- Header / Navbar -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-card border-b border-cyan-900/40 bg-darkBg/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#inicio" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-cyan-500 to-teal-400 flex items-center justify-center shadow-lg shadow-cyan-500/30 group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-heart-pulse text-darkBg text-lg font-bold"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-cyan-400 to-teal-300 bg-clip-text text-transparent">NeoVita<span class="text-white">~</span>VitalSync</span>
+                    <span class="text-[10px] text-cyan-400 font-medium tracking-widest uppercase">Salud Inteligente</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="#inicio" class="text-slate-300 hover:text-cyan-400 transition-colors">Inicio</a>
+                <a href="#funciones" class="text-slate-300 hover:text-cyan-400 transition-colors">Funciones</a>
+                <a href="#guia" class="text-slate-300 hover:text-cyan-400 transition-colors">Guía</a>
+                <a href="#precios" class="text-slate-300 hover:text-cyan-400 transition-colors">Precios</a>
+                <a href="https://wa.me/56954957977?text=Hola%2C%20me%20interesar%C3%ADa%20saber%20m%C3%A1s%20sobre%20NeoVita~VitalSync%2C%20%C2%BFme%20puedes%20orientar%3F" target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-cyan-400 transition-colors">Soporte</a>
+            </nav>
+
+            <!-- CTA Button -->
+            <div class="hidden sm:flex items-center space-x-4">
+                <a href="https://neovita-app-blond.vercel.app/" class="px-5 py-2.5 rounded-full bg-gradient-to-r from-cyan-500 to-teal-400 text-darkBg font-semibold text-sm glow-btn" target="_blank" rel="noopener noreferrer">
+                    Abrir App
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden flex items-center">
+                <button id="menu-btn" class="text-slate-300 hover:text-cyan-400 focus:outline-none p-2" aria-label="Menú">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden glass-card border-t border-cyan-900/30 px-4 pt-2 pb-6 space-y-3">
+            <a href="#inicio" class="block py-2 text-slate-300 hover:text-cyan-400 font-medium">Inicio</a>
+            <a href="#funciones" class="block py-2 text-slate-300 hover:text-cyan-400 font-medium">Funciones</a>
+                <a href="#guia" class="block py-2 text-slate-300 hover:text-cyan-400 font-medium">Guía</a>
+            <a href="#precios" class="block py-2 text-slate-300 hover:text-cyan-400 font-medium">Precios</a>
+            <a href="https://wa.me/56954957977?text=Hola%2C%20me%20interesar%C3%ADa%20saber%20m%C3%A1s%20sobre%20NeoVita~VitalSync%2C%20%C2%BFme%20puedes%20orientar%3F" target="_blank" rel="noopener noreferrer" class="block py-2 text-slate-300 hover:text-cyan-400 font-medium">Soporte</a>
+            <div class="pt-2">
+                <a href="https://neovita-app-blond.vercel.app/" class="w-full text-center block py-2.5 rounded-full bg-gradient-to-r from-cyan-500 to-teal-400 text-darkBg font-semibold text-sm glow-btn" target="_blank" rel="noopener noreferrer">
+                    Abrir App
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
+        <!-- Background Glow Effects -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute top-1/3 right-10 w-80 h-80 bg-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Text Column -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-semibold tracking-wide uppercase">
+                        <i class="fa-solid fa-bolt text-cyan-400"></i>
+                        <span>Asistente de Salud Inteligente</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                        Asistente de Salud e <span class="bg-gradient-to-r from-cyan-400 to-teal-300 bg-clip-text text-transparent glow-text">Inteligencia Familiar</span>
+                    </h1>
+
+                    <p class="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                        Centraliza el cuidado médico de tu hogar con tecnología avanzada. Escanea recetas, gestiona tratamientos con dosis exactas, habla con tu asistente de voz y controla citas médicas en un solo lugar.
+                    </p>
+
+                    <!-- CTAs -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4 pt-4">
+                        <a href="https://neovita-app-blond.vercel.app/" class="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-cyan-500 to-teal-400 text-darkBg font-bold text-base glow-btn text-center flex items-center justify-center space-x-2" target="_blank" rel="noopener noreferrer">
+                            <span>Comenzar Ahora</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="https://wa.me/56954957977?text=Hola%2C%20me%20interesar%C3%ADa%20saber%20m%C3%A1s%20sobre%20NeoVita~VitalSync%2C%20%C2%BFme%20puedes%20orientar%3F" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-4 rounded-full glass-card border border-cyan-500/30 text-cyan-400 hover:bg-cyan-500/10 font-semibold text-base transition-all text-center flex items-center justify-center space-x-2">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                            <span>Contacto WhatsApp</span>
+                        </a>
+                    </div>
+
+                    <!-- Trust Stats -->
+                    <div class="pt-6 grid grid-cols-3 gap-4 border-t border-slate-800/80 max-w-lg mx-auto lg:mx-0">
+                        <div>
+                            <p class="text-2xl font-bold text-cyan-400">100%</p>
+                            <p class="text-xs text-slate-400">Funcional</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold text-teal-400">24/7</p>
+                            <p class="text-xs text-slate-400">Asistencia</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold text-cyan-400">Seguro</p>
+                            <p class="text-xs text-slate-400">Datos Protegidos</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Mockup Column -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-full max-w-sm">
+                        <!-- Floating Glass Device Container -->
+                        <div class="glass-card rounded-3xl p-6 shadow-2xl border border-cyan-500/30 relative overflow-hidden">
+                            <!-- Screen Header -->
+                            <div class="flex items-center justify-between pb-4 border-b border-slate-700/50">
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                                    <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                                    <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                                </div>
+                                <span class="text-xs text-cyan-400 font-mono">VitalSync OS v2.4</span>
+                            </div>
+
+                            <!-- Mockup Content Items -->
+                            <div class="space-y-4 pt-4">
+                                <!-- Card Item 1 -->
+                                <div class="p-3 rounded-2xl bg-cyan-950/40 border border-cyan-500/20 flex items-center space-x-3">
+                                    <div class="w-10 h-10 rounded-xl bg-cyan-500/20 flex items-center justify-center text-cyan-400 flex-shrink-0">
+                                        <i class="fa-solid fa-file-medical"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs font-semibold text-white">Receta Escaneada</p>
+                                        <p class="text-[11px] text-cyan-300">Ibuprofeno 400mg - Dosis configurada</p>
+                                    </div>
+                                </div>
+
+                                <!-- Card Item 2 -->
+                                <div class="p-3 rounded-2xl bg-teal-950/40 border border-teal-500/20 flex items-center space-x-3">
+                                    <div class="w-10 h-10 rounded-xl bg-teal-500/20 flex items-center justify-center text-teal-400 flex-shrink-0">
+                                        <i class="fa-solid fa-microphone-lines"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs font-semibold text-white">Asistente de Voz Activo</p>
+                                        <p class="text-[11px] text-teal-300">"¿A qué hora debo tomar la pastilla?"</p>
+                                    </div>
+                                </div>
+
+                                <!-- Card Item 3 -->
+                                <div class="p-3 rounded-2xl bg-slate-900/60 border border-slate-700/50 flex items-center space-x-3">
+                                    <div class="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-400 flex-shrink-0">
+                                        <i class="fa-solid fa-calendar-check"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs font-semibold text-white">Próxima Cita Médica</p>
+                                        <p class="text-[11px] text-slate-400">Cardiología - Mañana 10:00 AM</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Floating badge -->
+                            <div class="mt-6 p-3 rounded-xl bg-gradient-to-r from-cyan-500/10 to-teal-500/10 border border-cyan-500/30 text-center">
+                                <p class="text-xs text-cyan-300 font-medium">✓ Sistema de salud sincronizado</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section (Funciones) -->
+    <section id="funciones" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+                    Capacidades Clave del <span class="bg-gradient-to-r from-cyan-400 to-teal-300 bg-clip-text text-transparent">Asistente de Salud</span>
+                </h2>
+                <p class="text-slate-300 text-base sm:text-lg">
+                    Diseñado con tecnología inteligente para cuidar de ti y de toda tu familia de forma práctica y segura.
+                </p>
+            </div>
+
+            <!-- Features Grid with Glassmorphism -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Feature 1: Escaneo de Receta (Protagonista) -->
+                <div class="glass-card rounded-3xl p-8 transition-all duration-300 hover:-translate-y-1 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl group-hover:bg-cyan-500/25 transition-all"></div>
+                    <div class="w-14 h-14 rounded-2xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400 text-2xl mb-6 shadow-lg shadow-cyan-500/20">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Escaneo de Receta y Dosis</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Escanea cualquier receta médica en segundos con nuestra inteligencia artificial y obtén la preparación automática del tratamiento con las dosis exactas incorporadas.
+                    </p>
+                </div>
+
+                <!-- Feature 2: Asistente de Voz (Protagonista) -->
+                <div class="glass-card rounded-3xl p-8 transition-all duration-300 hover:-translate-y-1 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-teal-500/10 rounded-full blur-2xl group-hover:bg-teal-500/25 transition-all"></div>
+                    <div class="w-14 h-14 rounded-2xl bg-teal-500/20 border border-teal-500/40 flex items-center justify-center text-teal-400 text-2xl mb-6 shadow-lg shadow-teal-500/20">
+                        <i class="fa-solid fa-microphone-lines"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Asistente de Voz Inteligente</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Interactúa por voz con tu asistente para resolver dudas sobre tus tomas, consultar horarios de medicamentos o recibir indicaciones rápidas sin tocar la pantalla.
+                    </p>
+                </div>
+
+                <!-- Feature 3: Recordatorios de Medicamentos -->
+                <div class="glass-card rounded-3xl p-8 transition-all duration-300 hover:-translate-y-1 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl group-hover:bg-emerald-500/25 transition-all"></div>
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 text-2xl mb-6 shadow-lg shadow-emerald-500/20">
+                        <i class="fa-solid fa-bell"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Recordatorios de Medicamentos</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Alertas puntuales y personalizadas para asegurar que nunca olvides una dosis, con control de inventario y confirmación de tomas diarias.
+                    </p>
+                </div>
+
+                <!-- Feature 4: Control de Salud -->
+                <div class="glass-card rounded-3xl p-8 transition-all duration-300 hover:-translate-y-1 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl group-hover:bg-cyan-500/25 transition-all"></div>
+                    <div class="w-14 h-14 rounded-2xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400 text-2xl mb-6 shadow-lg shadow-cyan-500/20">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Control de Estado de Salud</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Monitorea signos vitales, presión arterial, glucosa y evolución general con gráficos intuitivos accesibles para ti y tu médico.
+                    </p>
+                </div>
+
+                <!-- Feature 5: Gestión de Citas -->
+                <div class="glass-card rounded-3xl p-8 transition-all duration-300 hover:-translate-y-1 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-teal-500/10 rounded-full blur-2xl group-hover:bg-teal-500/25 transition-all"></div>
+                    <div class="w-14 h-14 rounded-2xl bg-teal-500/20 border border-teal-500/40 flex items-center justify-center text-teal-400 text-2xl mb-6 shadow-lg shadow-teal-500/20">
+                        <i class="fa-solid fa-calendar-days"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Gestión de Citas Médicas</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Organiza el calendario de consultas con especialistas, exámenes de laboratorio y chequeos preventivos con notificaciones anticipadas.
+                    </p>
+                </div>
+
+                <!-- Feature 6: Inteligencia Familiar -->
+                <div class="glass-card rounded-3xl p-8 transition-all duration-300 hover:-translate-y-1 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl group-hover:bg-emerald-500/25 transition-all"></div>
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 text-2xl mb-6 shadow-lg shadow-emerald-500/20">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Perfiles Familiares</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Administra el historial y tratamientos de todos los miembros de tu hogar desde una única cuenta centralizada y segura.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Guía de uso -->
+    <section id="guia" class="py-20 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Conoce <span class="bg-gradient-to-r from-cyan-400 to-teal-300 bg-clip-text text-transparent">NeoVita~VitalSync</span></h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">Descubre qué es, qué puede hacer por tu familia y aprende a usarla paso a paso.</p>
+            </div>
+            <div class="space-y-4">
+                <details class="group glass-card rounded-2xl"><summary class="flex items-center justify-between cursor-pointer list-none px-6 py-5 text-white font-semibold [&::-webkit-details-marker]:hidden"><span class="flex items-center gap-3"><i class="fa-solid fa-circle-info text-cyan-400"></i>¿Qué es NeoVita~VitalSync?</span><i class="fa-solid fa-chevron-down text-cyan-400 transition-transform group-open:rotate-180"></i></summary><div class="px-6 pb-6 text-sm text-slate-300 leading-relaxed space-y-3"><p><b class="text-white">NeoVita~VitalSync</b> es una aplicación web (PWA) para ayudarte a cumplir tus tratamientos médicos, cuidar la salud de tu familia y reaccionar rápido ante una emergencia.</p><p>Combina un asistente de voz interactivo (Vita), alarmas con sonido y vibración, registro de recetas con la cámara y un botón SOS dual (llamada telefónica + WhatsApp), pensado para adultos mayores, cuidadores y familias.</p></div></details>
+                <details class="group glass-card rounded-2xl"><summary class="flex items-center justify-between cursor-pointer list-none px-6 py-5 text-white font-semibold [&::-webkit-details-marker]:hidden"><span class="flex items-center gap-3"><i class="fa-solid fa-star text-cyan-400"></i>Características principales</span><i class="fa-solid fa-chevron-down text-cyan-400 transition-transform group-open:rotate-180"></i></summary><div class="px-6 pb-6 text-sm text-slate-300 leading-relaxed space-y-3"><ul class="list-disc pl-5 space-y-1.5"><li>🗣️ <b class="text-white">Asistente de voz Vita:</b> anuncia tus horarios de medicamentos y reconoce comandos de emergencia (“Socorro” o “Emergencia médica”).</li><li>⏰ <b class="text-white">Alarmas sonoras, visuales y con vibración:</b> suenan a la hora de cada toma. Activa 🔔 Alertas y mantén la app abierta.</li><li>📸 <b class="text-white">Registro de recetas con cámara:</b> toma una foto de tu receta y registra en pocos pasos el remedio, la dosis, la duración, el stock y los horarios.</li><li>👥 <b class="text-white">Multiperfil familiar:</b> administra los remedios de los abuelos, hijos o tu pareja en una sola aplicación.</li><li>🚨 <b class="text-white">Botón SOS dual:</b> llama al número del cuidador o envía una alerta por WhatsApp con un solo toque.</li><li>🩺 <b class="text-white">Ficha médica y control de citas:</b> guarda tu grupo sanguíneo, alergias graves y recordatorios de controles médicos.</li></ul></div></details>
+                <details class="group glass-card rounded-2xl"><summary class="flex items-center justify-between cursor-pointer list-none px-6 py-5 text-white font-semibold [&::-webkit-details-marker]:hidden"><span class="flex items-center gap-3"><i class="fa-solid fa-book-open text-cyan-400"></i>Tutorial de uso paso a paso</span><i class="fa-solid fa-chevron-down text-cyan-400 transition-transform group-open:rotate-180"></i></summary><div class="px-6 pb-6 text-sm text-slate-300 leading-relaxed space-y-3"><div class="space-y-3"><details class="group rounded-xl bg-slate-900/50 border border-slate-800"><summary class="flex items-center justify-between cursor-pointer list-none px-5 py-4 text-slate-100 text-sm font-semibold [&::-webkit-details-marker]:hidden"><span>Paso 1: Activación y primer acceso</span><i class="fa-solid fa-chevron-down text-cyan-400 text-xs transition-transform group-open:rotate-180"></i></summary><div class="px-5 pb-5 text-sm text-slate-300 leading-relaxed space-y-2"><ol class="list-decimal pl-5 space-y-1.5"><li>Abre el enlace de la aplicación en tu navegador (Chrome, Safari o Edge).</li><li>Si eres usuario nuevo, verás la Pantalla de Activación.</li><li>Ingresa tu Código de Licencia (Plan 30 Días <b class="text-white">TMP-XXXXXX</b> o Plan Por Vida <b class="text-white">PRO-XXXXXX</b>).</li><li>Presiona “Activar Aplicación”. El código quedará validado para tu dispositivo.</li></ol><p>¿Quieres probarla antes de comprar? Presiona “Probar Demo (24 Hrs)”.</p></div></details><details class="group rounded-xl bg-slate-900/50 border border-slate-800"><summary class="flex items-center justify-between cursor-pointer list-none px-5 py-4 text-slate-100 text-sm font-semibold [&::-webkit-details-marker]:hidden"><span>Paso 2: Permisos y seguridad</span><i class="fa-solid fa-chevron-down text-cyan-400 text-xs transition-transform group-open:rotate-180"></i></summary><div class="px-5 pb-5 text-sm text-slate-300 leading-relaxed space-y-2"><ol class="list-decimal pl-5 space-y-1.5"><li>En la parte superior, toca la cápsula <b class="text-white">🔔 Alertas</b> y selecciona “Permitir” en el aviso de tu celular. Así se activan el sonido, la vibración y las notificaciones.</li><li>Para que las alarmas suenen, mantén la app abierta y la pantalla encendida.</li><li>En la tarjeta “🚨 Botón de Emergencia”, ingresa el número de tu cuidador o familiar (ejemplo: +56912345678) y presiona “Guardar Número SOS”.</li></ol></div></details><details class="group rounded-xl bg-slate-900/50 border border-slate-800"><summary class="flex items-center justify-between cursor-pointer list-none px-5 py-4 text-slate-100 text-sm font-semibold [&::-webkit-details-marker]:hidden"><span>Paso 3: Crear perfiles familiares</span><i class="fa-solid fa-chevron-down text-cyan-400 text-xs transition-transform group-open:rotate-180"></i></summary><div class="px-5 pb-5 text-sm text-slate-300 leading-relaxed space-y-2"><ol class="list-decimal pl-5 space-y-1.5"><li>En “👥 Perfiles de Familia”, escribe el nombre del integrante (ejemplo: Mamá, Hijo, Mío).</li><li>Toca “+ Crear”.</li><li>Cambia entre perfiles desde el menú desplegable para asignar tratamientos independientes a cada persona.</li></ol></div></details><details class="group rounded-xl bg-slate-900/50 border border-slate-800"><summary class="flex items-center justify-between cursor-pointer list-none px-5 py-4 text-slate-100 text-sm font-semibold [&::-webkit-details-marker]:hidden"><span>Paso 4: Registrar un tratamiento</span><i class="fa-solid fa-chevron-down text-cyan-400 text-xs transition-transform group-open:rotate-180"></i></summary><div class="px-5 pb-5 text-sm text-slate-300 leading-relaxed space-y-2"><p><b class="text-white">Opción A: con la cámara.</b></p><ol class="list-decimal pl-5 space-y-1.5"><li>Ve a la pestaña 💊 Tratamientos y toca “📷 Cámara” (o “📂 Galería”).</li><li>Toma la foto de la receta. La app te preguntará el nombre del remedio, la dosis por toma, los días de tratamiento, el stock de la caja, la hora de la primera toma y cada cuántas horas se toma.</li></ol><p><b class="text-white">Opción B: registro manual.</b></p><ol class="list-decimal pl-5 space-y-1.5"><li>En “💊 Control de Stock Manual”, escribe el nombre y dosis (ejemplo: Losartán 50mg) y los comprimidos que tienes en la caja.</li><li>Elige la hora de la primera toma y la frecuencia (cada 4, 6, 8, 12 o 24 horas).</li><li>Presiona “+ Agregar Remedio”.</li></ol></div></details><details class="group rounded-xl bg-slate-900/50 border border-slate-800"><summary class="flex items-center justify-between cursor-pointer list-none px-5 py-4 text-slate-100 text-sm font-semibold [&::-webkit-details-marker]:hidden"><span>Paso 5: Cuando suena la alarma</span><i class="fa-solid fa-chevron-down text-cyan-400 text-xs transition-transform group-open:rotate-180"></i></summary><div class="px-5 pb-5 text-sm text-slate-300 leading-relaxed space-y-2"><p>A la hora de la toma, la app emite sonido, vibra y muestra una tarjeta de alerta con el nombre del remedio y el perfil.</p><p>Si el asistente de voz está encendido (ON), te lo anunciará: “Atención. Es la hora de tomar [remedio]”.</p><p>Toca el botón verde <b class="text-white">✅ REGISTRAR TOMA Y APAGAR ALARMA</b>: la toma queda marcada en el calendario y se descuenta 1 comprimido del stock.</p></div></details><details class="group rounded-xl bg-slate-900/50 border border-slate-800"><summary class="flex items-center justify-between cursor-pointer list-none px-5 py-4 text-slate-100 text-sm font-semibold [&::-webkit-details-marker]:hidden"><span>Paso 6: Asistente de voz y SOS</span><i class="fa-solid fa-chevron-down text-cyan-400 text-xs transition-transform group-open:rotate-180"></i></summary><div class="px-5 pb-5 text-sm text-slate-300 leading-relaxed space-y-2"><ul class="list-disc pl-5 space-y-1.5"><li>Para activarlo, toca la cápsula <b class="text-white">🗣️ Voz</b> de la barra superior y cámbiala a ON.</li><li>Con el asistente encendido y la app abierta, si dices claramente “Emergencia médica” o “Socorro”, la app marca la llamada al número SOS guardado.</li><li>SOS manual: en Inicio, presiona “📞 Llamar por llamada GSM” o “💬 Enviar Alerta por WhatsApp”.</li></ul></div></details><details class="group rounded-xl bg-slate-900/50 border border-slate-800"><summary class="flex items-center justify-between cursor-pointer list-none px-5 py-4 text-slate-100 text-sm font-semibold [&::-webkit-details-marker]:hidden"><span>Paso 7: Ficha médica y citas</span><i class="fa-solid fa-chevron-down text-cyan-400 text-xs transition-transform group-open:rotate-180"></i></summary><div class="px-5 pb-5 text-sm text-slate-300 leading-relaxed space-y-2"><ol class="list-decimal pl-5 space-y-1.5"><li>En la pestaña 🩺 Salud & Citas, completa tu tipo de sangre y alergias graves.</li><li>En “Próximos Controles Médicos”, agenda el nombre del médico, la clínica y la fecha y hora de tu cita.</li></ol></div></details></div></div></details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section (Precios) -->
+    <section id="precios" class="py-20 relative bg-slate-900/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-12">
+                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+                    Planes y <span class="bg-gradient-to-r from-cyan-400 to-teal-300 bg-clip-text text-transparent">Precios Transparentes</span>
+                </h2>
+                <p class="text-slate-300 text-base sm:text-lg">
+                    La aplicación es exactamente la misma y totalmente funcional en las 3 alternativas. Elige el modelo de acceso que mejor se adapte a ti.
+                </p>
+            </div>
+
+            <!-- Pricing Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+                
+                <!-- Plan 1: Básico -->
+                <div class="glass-card rounded-3xl p-8 flex flex-col justify-between relative border border-slate-700">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-bold text-white">Básico</h3>
+                            <span class="text-xs px-3 py-1 rounded-full bg-slate-800 text-slate-300 font-medium">Prueba</span>
+                        </div>
+                        <div class="mb-6">
+                            <span class="text-4xl font-extrabold text-white">$0</span>
+                            <span class="text-slate-400 text-sm ml-1">/ 24 horas</span>
+                        </div>
+                        <p class="text-slate-300 text-sm mb-6 pb-6 border-b border-slate-800">
+                            Acceso completo a todas las funciones de la app durante 24 horas para experimentar su potencial.
+                        </p>
+                        <ul class="space-y-3.5 text-sm text-slate-300 mb-8">
+                            <li class="flex items-center space-x-3">
+                                <i class="fa-solid fa-check text-cyan-400"></i>
+                                <span>Todas las funciones 100% operativas</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <i class="fa-solid fa-check text-cyan-400"></i>
+                                <span>Escaneo de recetas y dosis</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <i class="fa-solid fa-check text-cyan-400"></i>
+                                <span>Asistente de voz inteligente</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <i class="fa-solid fa-check text-cyan-400"></i>
+                                <span>Recordatorios y citas médicas</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="https://neovita-app-blond.vercel.app/" class="w-full py-3.5 rounded-full glass-card border border-cyan-500/30 text-cyan-400 hover:bg-cyan-500/10 font-semibold text-center transition-all" target="_blank" rel="noopener noreferrer">
+                        Probar Gratis (24h)
+                    </a>
+                </div>
+
+                <!-- Plan 2: Personal Mensual (Destacado - Mejor valor) -->
+                <div class="glass-card rounded-3xl p-8 flex flex-col justify-between relative border-2 border-cyan-500 shadow-2xl shadow-cyan-500/20 transform lg:-translate-y-3">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-cyan-500 to-teal-400 text-darkBg text-xs font-extrabold uppercase tracking-wider shadow-lg">
+                        Mejor valor
+                    </div>
+                    <div>
+                        <div class="flex justify-between items-center mb-4 pt-2">
+                            <h3 class="text-xl font-bold text-white">Personal Mensual</h3>
+                            <span class="text-xs px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-300 font-medium">Suscripción</span>
+                        </div>
+                        <div class="mb-6">
+                            <span class="text-4xl font-extrabold text-white">$10.000</span>
+                            <span class="text-slate-400 text-sm ml-1">/ mes</span>
+                        </div>
+                        <p class="text-slate-300 text-sm mb-6 pb-6 border-b border-slate-800">
+                            Acceso ilimitado y permanente con total flexibilidad. Cancela cuando lo desees.
+                        </p>
+                        <ul class="space-y-3.5 text-sm text-slate-300 mb-8">
+                            <li class="flex items-center space-x-3">
+                                <i class="fa-solid fa-check text-cyan-400"></i>
+                                <span><strong>Todo lo de la app incluido</strong></span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <i class="fa-solid fa-check text-cyan-400"></i>
+                                <span>Escaneos de recetas ilimitados</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <i class="fa-solid fa-check text-cyan-400"></i>
+                                <span>Asistente de voz disponible 24/7</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <i class="fa-solid fa-check text-cyan-400"></i>
+                                <span>Actualizaciones automáticas continuas</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <i class="fa-solid fa-check text-cyan-400"></i>
+                                <span>Soporte prioritario por correo y WhatsApp</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/56954957977?text=Hola%2C%20quiero%20contratar%20el%20Plan%20Personal%20Mensual%20de%20%2410.000.%20Mis%20datos%20son%3A%0A-%20Nombre%20Cliente%3A%20%5BEscribir%20aqu%C3%AD%5D%0A-%20WhatsApp%3A%20%5BEscribir%20aqu%C3%AD%5D%0A-%20Tipo%20Plan%3A%20Mensual%20%2410.000" class="w-full py-4 rounded-full bg-gradient-to-r from-cyan-500 to-teal-400 text-darkBg font-bold text-center glow-btn transition-all" target="_blank" rel="noopener noreferrer">
+                        Elegir Plan Mensual
+                    </a>
+                </div>
+
+                <!-- Plan 3: Personal Por Vida -->
+                <div class="glass-card rounded-3xl p-8 flex flex-col justify-between relative border border-slate-700">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-bold text-white">Personal Por Vida</h3>
+                            <span class="text-xs px-3 py-1 rounded-full bg-teal-500/20 text-teal-300 font-medium">Pago único</span>
+                        </div>
+                        <div class="mb-6">
+                            <span class="text-4xl font-extrabold text-white">$15.000</span>
+                            <span class="text-slate-400 text-sm ml-1">/ única vez</span>
+                        </div>
+                        <p class="text-slate-300 text-sm mb-6 pb-6 border-b border-slate-800">
+                            Acceso vitalicio absoluto con un solo pago. Sin suscripciones mensuales ni cobros sorpresas.
+                        </p>
+                        <ul class="space-y-3.5 text-sm text-slate-300 mb-8">
+                            <li class="flex items-center space-x-3">
+                                <i class="fa-solid fa-check text-teal-400"></i>
+                                <span><strong>Acceso vitalicio absoluto</strong></span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <i class="fa-solid fa-check text-teal-400"></i>
+                                <span>Todas las funciones desbloqueadas para siempre</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <i class="fa-solid fa-check text-teal-400"></i>
+                                <span>Sin pagos mensuales ni suscripciones</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <i class="fa-solid fa-check text-teal-400"></i>
+                                <span>Actualizaciones futuras incluidas</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <i class="fa-solid fa-check text-teal-400"></i>
+                                <span>Soporte prioritario</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/56954957977?text=Hola%2C%20quiero%20contratar%20el%20Plan%20Personal%20Por%20Vida%20de%20%2415.000.%20Mis%20datos%20son%3A%0A-%20Nombre%20Cliente%3A%20%5BEscribir%20aqu%C3%AD%5D%0A-%20WhatsApp%3A%20%5BEscribir%20aqu%C3%AD%5D%0A-%20Tipo%20Plan%3A%20Por%20Vida%20%2415.000" class="w-full py-3.5 rounded-full glass-card border border-teal-500/30 text-teal-400 hover:bg-teal-500/10 font-semibold text-center transition-all" target="_blank" rel="noopener noreferrer">
+                        Obtener Plan Vitalicio
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 bg-darkBg text-slate-400 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                
+                <!-- Brand Column -->
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-cyan-500 to-teal-400 flex items-center justify-center text-darkBg font-bold">
+                            <i class="fa-solid fa-heart-pulse"></i>
+                        </div>
+                        <span class="text-lg font-extrabold text-white">NeoVita<span class="text-cyan-400">~</span>VitalSync</span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        NeoVita~VitalSync es tu asistente tecnológico de salud familiar y gestión de tratamientos, diseñado para simplificar el bienestar en el hogar mediante inteligencia artificial.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Enlaces Rápidos</h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="#inicio" class="hover:text-cyan-400 transition-colors">Inicio</a></li>
+                        <li><a href="#funciones" class="hover:text-cyan-400 transition-colors">Funciones</a></li>
+                        <li><a href="#guia" class="hover:text-cyan-400 transition-colors">Guía de uso</a></li>
+                        <li><a href="#precios" class="hover:text-cyan-400 transition-colors">Precios</a></li>
+                        <li><a href="https://wa.me/56954957977?text=Hola%2C%20me%20interesar%C3%ADa%20saber%20m%C3%A1s%20sobre%20NeoVita~VitalSync%2C%20%C2%BFme%20puedes%20orientar%3F" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400 transition-colors">Soporte</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Contacto</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-center space-x-2.5">
+                            <i class="fa-solid fa-envelope text-cyan-400"></i>
+                            <a href="mailto:soporteneovitavitalsyncs@gmail.com" class="hover:text-cyan-400 transition-colors text-xs break-all">soporteneovitavitalsyncs@gmail.com</a>
+                        </li>
+                        <li class="flex items-center space-x-2.5">
+                            <i class="fa-brands fa-whatsapp text-teal-400"></i>
+                            <a href="https://wa.me/56954957977?text=Hola%2C%20me%20interesar%C3%ADa%20saber%20m%C3%A1s%20sobre%20NeoVita~VitalSync%2C%20%C2%BFme%20puedes%20orientar%3F" target="_blank" rel="noopener noreferrer" class="hover:text-teal-400 transition-colors">Atención vía WhatsApp</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Legal Note -->
+                <div>
+                    <h4 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Aviso Legal</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Herramienta digital de apoyo a la organización, control de salud y bienestar familiar. No reemplaza el diagnóstico ni el criterio médico profesional.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500">
+                <p>&copy; 2026 NeoVita~VitalSync. Todos los derechos reservados.</p>
+                <div class="flex space-x-6 mt-4 sm:mt-0">
+                    <a href="privacidad.html" class="hover:text-cyan-400 transition-colors">Política de Privacidad</a>
+                    <a href="terminos.html" class="hover:text-cyan-400 transition-colors">Términos de Servicio</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu Toggle -->
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on click a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
